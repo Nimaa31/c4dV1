@@ -1016,8 +1016,6 @@ export interface ApiJoinUsJoinUs extends Schema.SingleType {
       [
         'c4d-components.vertical-space',
         'c4d-components.carousel-type-linear',
-        'c4d-components.ellipse',
-        'c4d-components.carousel-slide-job-offres',
         'c4d-components.contact-form',
         'c4d-components.spontaneous-job-application-form',
         'c4d-components.job-offer',

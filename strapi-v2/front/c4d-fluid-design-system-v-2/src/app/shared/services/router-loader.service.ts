@@ -27,27 +27,31 @@ export class RouterLoaderService {
         )
       );
 
-      for (let index = 0; index < res.length; index++) {
-        const element = res[index].data.attributes;
-        const dataFromStrapi = element;
-        if(!element.page?.data){
-          console.warn(`quelle page est null  ${index}`, element);
-          continue;
-        }
-        const routeToAdd = {
-          path:
-            element.page.data.attributes.slug == "home-page"
-              ? ""
-              : element.page.data.attributes.slug,
-          title: element.page.data.attributes.Nom,
-          component: GenericPageComponent,
-          data: dataFromStrapi,
-        };
-        if (element.page.data.attributes.slug == "home-page") {
-          routeToAdd.path = "";
-        }
-        routes[0].children?.unshift(routeToAdd);
-      }
+for (let index = 0; index < res.length; index++) {
+  try {
+    const element = res[index]?.data?.attributes;
+
+    if (!element || !element.page?.data || !element.page.data.attributes) {
+      console.warn(`Page à l'index ${index} invalide ou manquante`, res[index]);
+      continue;
+    }
+
+    const slug = element.page.data.attributes.slug;
+    const routeToAdd = {
+      path: slug === 'home-page' ? '' : slug,
+      title: element.page.data.attributes.Nom,
+      component: GenericPageComponent,
+      data: element,
+    };
+
+    routes[0].children?.unshift(routeToAdd);
+
+  } catch (error) {
+    console.error(`Erreur lors de la configuration de la route à l'index ${index}`, error);
+    continue;
+  }
+}
+
 
       // const response2: any = await this.loadCollectionType(
       //   'formulaire-articles'

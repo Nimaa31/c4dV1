@@ -2,7 +2,8 @@
   "collectionName": "components_c4d_components_ellipses",
   "info": {
     "displayName": "ellipse",
-    "icon": "chartBubble"
+    "icon": "chartBubble",
+    "description": ""
   },
   "options": {},
   "attributes": {

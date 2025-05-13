@@ -70,35 +70,6 @@ export interface C4DComponentsCarouselSlideJobOffers extends Schema.Component {
   };
 }
 
-export interface C4DComponentsCarouselSlideJobOffres extends Schema.Component {
-  collectionName: 'components_c4d_components_carousel_slide_job_offres';
-  info: {
-    displayName: 'carousel slide job offres';
-    icon: 'bulletList';
-    description: '';
-  };
-  attributes: {
-    inputBackgroundColor: Attribute.String &
-      Attribute.CustomField<'plugin::color-picker.color'>;
-    outputBadgeColor: Attribute.String &
-      Attribute.CustomField<'plugin::color-picker.color'>;
-    cardOpacity: Attribute.Integer;
-    title: Attribute.String;
-    titleColor: Attribute.String &
-      Attribute.CustomField<'plugin::color-picker.color'>;
-    jobTitleColor: Attribute.String &
-      Attribute.CustomField<'plugin::color-picker.color'>;
-    jobDescriptionColor: Attribute.String &
-      Attribute.CustomField<'plugin::color-picker.color'>;
-    jobHighlightedColor: Attribute.String &
-      Attribute.CustomField<'plugin::color-picker.color'>;
-    jobBadgeColor: Attribute.String &
-      Attribute.CustomField<'plugin::color-picker.color'>;
-    jobBadgeBackgroundColor: Attribute.String &
-      Attribute.CustomField<'plugin::color-picker.color'>;
-  };
-}
-
 export interface C4DComponentsCarouselSlide extends Schema.Component {
   collectionName: 'components_c4d_components_carousel_slides';
   info: {
@@ -246,6 +217,7 @@ export interface C4DComponentsEllipse extends Schema.Component {
   info: {
     displayName: 'ellipse';
     icon: 'chartBubble';
+    description: '';
   };
   attributes: {
     color: Attribute.String &
@@ -271,15 +243,16 @@ export interface C4DComponentsJobOffer extends Schema.Component {
   collectionName: 'components_c4d_components_job_offers';
   info: {
     displayName: 'JobOffer';
+    description: '';
   };
   attributes: {
     title: Attribute.String;
     requiredEducationLevel: Attribute.String;
     workType: Attribute.String;
     contractType: Attribute.String;
-    jobDescription: Attribute.Blocks;
     link: Attribute.String;
     cardSpacing: Attribute.String;
+    jobDescription: Attribute.Text;
   };
 }
 
@@ -553,7 +526,6 @@ declare module '@strapi/types' {
       'c4d-components.accordions': C4DComponentsAccordions;
       'c4d-components.carousel-paragraph-icons': C4DComponentsCarouselParagraphIcons;
       'c4d-components.carousel-slide-job-offers': C4DComponentsCarouselSlideJobOffers;
-      'c4d-components.carousel-slide-job-offres': C4DComponentsCarouselSlideJobOffres;
       'c4d-components.carousel-slide': C4DComponentsCarouselSlide;
       'c4d-components.carousel-type-linear': C4DComponentsCarouselTypeLinear;
       'c4d-components.contact-form': C4DComponentsContactForm;
