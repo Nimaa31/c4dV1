@@ -1,0 +1,9 @@
+<div class="w-full my-4 px-8 md:px-14 lg:px-24 xl:px-32">
+    <div class="min-[1400px]:max-w-[1400px] left-1/2 translate-x-[-50%] relative flex flex-col items-center  space-y-7">
+      <span [ngStyle]="{'color': titleColor}" *ngIf="hasTitle" [innerHTML]="title" class="text-center text-xl sm:text-2xl lg:text-3xl font-bold"></span>
+      <span [ngStyle]="{'color': textColor}" *ngIf="hasText" [innerHTML]="text" class="text-center text-base lg:text-lg xl:text-xl font-[550]"></span>
+      <ng-container *ngIf="hasButton">
+        <lib-button [isButtonLinkActive]="true" [link]="linkButton" [text]="textButton" item="normal"></lib-button>
+      </ng-container>
+    </div>
+  </div>

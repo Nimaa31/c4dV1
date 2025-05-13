@@ -1,0 +1,16 @@
+<div [ngStyle]="{'width': '100%', 'min-height': '100vh'}">
+    @if (showMenu) {
+        <lib-menu></lib-menu>
+    }
+
+    @for (ellipse of ellipses; track ellipse) {
+        <lib-ellipse [fillColor]="ellipse.color" [enableRightPosition]="ellipse.enableRightPosition" [xPosition]="ellipse.xPosition" [yPosition]="ellipse.yPosition"></lib-ellipse>
+    }
+
+    <ng-template adHost></ng-template>
+    <!-- <lib-carousel-slide-job-offers></lib-carousel-slide-job-offers> -->
+
+    @if (showFooter) {
+        <lib-footer></lib-footer>
+    }
+    </div>

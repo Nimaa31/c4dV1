@@ -1,0 +1,52 @@
+{
+  "name": "c4d-fluid-design-system-v-2",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^17.1.0",
+    "@angular/common": "^17.1.0",
+    "@angular/compiler": "^17.1.0",
+    "@angular/core": "^17.1.0",
+    "@angular/forms": "^17.1.0",
+    "@angular/platform-browser": "^17.1.0",
+    "@angular/platform-browser-dynamic": "^17.1.0",
+    "@angular/router": "^17.1.0",
+    "develop": "^1.0.0",
+    "mysql": "^2.18.1",
+    "ngx-file-drop": "^16.0.0",
+    "rxjs": "~7.8.0",
+    "swiper": "^11.0.7",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.14.3"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^17.1.2",
+    "@angular/cli": "^17.1.2",
+    "@angular/compiler-cli": "^17.1.0",
+    "@types/jasmine": "~5.1.0",
+    "@wdio/cucumber-framework": "^9.10.1",
+    "@wdio/local-runner": "^9.10.1",
+    "@wdio/schematics": "^1.2.1",
+    "@wdio/spec-reporter": "^9.10.1",
+    "autoprefixer": "^10.4.17",
+    "chromedriver": "^133.0.3",
+    "jasmine-core": "~5.1.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "postcss": "^8.4.34",
+    "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.3.2",
+    "wdio-chromedriver-service": "^8.1.1"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_uses",
+  "info": {
+    "singularName": "about-us",
+    "pluralName": "about-uses",
+    "displayName": "AboutUs",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "dz": {
+      "type": "dynamiczone",
+      "components": [
+        "c4d-components.accordions",
+        "c4d-components.paragraph",
+        "c4d-components.carousel-slide",
+        "c4d-components.carousel-paragraph-icons",
+        "c4d-components.carousel-type-linear",
+        "c4d-components.slider-profile-cards",
+        "c4d-components.vertical-space"
+      ]
+    },
+    "page": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::page.page"
+    }
+  }
+}

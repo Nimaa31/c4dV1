@@ -1,0 +1,14 @@
+.card-container {
+  background: rgb(2,43,92);
+  background: linear-gradient(90deg, rgba(2,43,92,1) -50%, rgba(0,50,144,1) 35%, rgba(186,217,239,1) 110%);
+  
+}
+
+
+@media only screen and (max-width: 768px){
+  .card-container {
+  background: rgb(2,43,92);
+  background: linear-gradient(to bottom, rgba(2,43,92,1) -50%, rgba(0,50,144,1) 35%, rgba(186,217,239,1) 110%);
+  }
+  
+}

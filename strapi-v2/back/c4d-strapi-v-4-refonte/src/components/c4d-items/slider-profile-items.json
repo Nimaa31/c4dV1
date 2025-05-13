@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_c4d_items_slider_profile_items",
+  "info": {
+    "displayName": "sliderProfileItems",
+    "icon": "bold",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "job": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "socialMedias": {
+      "displayName": "sliderProfileSocialMediasItems",
+      "type": "component",
+      "repeatable": true,
+      "component": "c4d-items.slider-profile-social-medias-items"
+    }
+  }
+}

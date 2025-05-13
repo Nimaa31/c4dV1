@@ -1,0 +1,27 @@
+<div class="w-full min-[1600px]:flex justify-center my-4">
+    <div class="min-[1600px]:w-[1600px] relative space-y-6">
+    <p [innerHTML]="title" [ngStyle]="{'color': titleColor}" class="text-center text-2xl lg:text-3xl xl:text-4xl font-bold"></p>
+    <swiper-container autoplay-delay="4000" centered-slides="true" slides-per-view="auto" effect="coverflow" coverflow-effect-slide-shadows="false" speed="1000" pagination="true" pagination-clickable="true" grab-cursor="true">
+        @for (slide of slides; track slide) {
+        <swiper-slide>
+            <div #slideElement [ngStyle]="{'justify-content': isCardCenter ? 'center' : slide.justifyContent}" [ngClass]="isCardCenter ? 'space-x-12 xl:space-x-16 2xl:space-x-28' : slide.slideClasses" class="flex">
+                @for (card of slide; track card) {
+                <div #card [ngStyle]="{'background-color': enableTransparentCard ? outputBackgroundColor : inputBackgroundColor, 'margin-left': card.cardSpacing}" class="text-base 2xl:text-xl font-medium w-[260px] h-[230px] sm:w-[250px] sm:h-[222px] md:w-[260px] md:h-[230px] min-[890px]:w-[300px] min-[890px]:h-[266px] lg:w-[260px] lg:h-[230px] 2xl:w-[350px] 2xl:h-[310px] rounded-2xl 2xl:rounded-3xl p-6 flex flex-col items-center justify-around">
+                    <img class="max-h-[50%]" [src]="card.image">
+                    <p [ngStyle]="{'color': descriptionColor}" class="text-center">{{ card.description }}</p>
+                </div>
+                }
+            </div>
+        </swiper-slide>
+        }
+    </swiper-container>
+    @if (screenSize >= 500 && showLinearGradient) {
+        <div class="w-40 h-full sm:w-32 lg:w-36 xl:w-40 2xl:w-44 absolute top-0 right-0 z-10" style="pointer-events: none;">
+            <div [ngStyle]="{'background-image': rightLinearGradient}" class="w-full h-full opacity-80"></div>
+        </div>
+        <div class="w-40 h-full sm:w-32 lg:w-36 xl:w-40 2xl:w-44 absolute top-0 left-0 z-10" style="pointer-events: none;">
+            <div [ngStyle]="{'background-image': leftLinearGradient}" class="w-full h-full bg-gradient-to-r from-[#0F1927] to-[transparent] opacity-80"></div>
+        </div>
+    }
+</div>
+</div>

@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_c4d_components_footers",
+  "info": {
+    "displayName": "footer",
+    "icon": "code"
+  },
+  "options": {},
+  "attributes": {
+    "test": {
+      "type": "string"
+    }
+  }
+}

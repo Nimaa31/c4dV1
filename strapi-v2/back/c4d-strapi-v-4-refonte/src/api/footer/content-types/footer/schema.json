@@ -1,0 +1,85 @@
+{
+  "kind": "collectionType",
+  "collectionName": "footers",
+  "info": {
+    "singularName": "footer",
+    "pluralName": "footers",
+    "displayName": "footer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "backgroundColor": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "enableTransparentBackground": {
+      "type": "boolean",
+      "default": false
+    },
+    "title": {
+      "type": "string"
+    },
+    "titleColor": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "textColor": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "copyrightText": {
+      "type": "string"
+    },
+    "newsletterTitle": {
+      "type": "string"
+    },
+    "newsletterTitleColor": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "fieldPlaceholder": {
+      "type": "string"
+    },
+    "textPopup": {
+      "type": "string"
+    },
+    "textColorPopup": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "startColumn": {
+      "type": "component",
+      "repeatable": true,
+      "component": "c4d-items.footer-column-items"
+    },
+    "centerColumn": {
+      "type": "component",
+      "repeatable": true,
+      "component": "c4d-items.footer-column-items"
+    },
+    "endColumn": {
+      "type": "component",
+      "repeatable": true,
+      "component": "c4d-items.footer-column-items"
+    },
+    "legalItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "c4d-items.footer-column-items"
+    },
+    "socialMedias": {
+      "type": "component",
+      "repeatable": true,
+      "component": "c4d-items.footer-social-items"
+    }
+  }
+}

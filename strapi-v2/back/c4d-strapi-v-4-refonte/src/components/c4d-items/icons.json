@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_c4d_items_icons",
+  "info": {
+    "displayName": "iconsItems",
+    "icon": "scissors",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "text": {
+      "type": "string"
+    }
+  }
+}

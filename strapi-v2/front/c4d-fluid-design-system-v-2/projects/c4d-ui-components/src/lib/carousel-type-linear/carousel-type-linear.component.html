@@ -1,0 +1,20 @@
+<div class="w-full my-4 px-8 md:px-14 lg:px-24 xl:px-32">
+    <div class="min-[1400px]:max-w-[1400px] left-1/2 translate-x-[-50%] relative space-y-6 flex flex-col-reverse md:flex-row  md:space-y-0 justify-between items-center">
+        <div class="flex flex-col items-center md:items-start space-y-8">
+            <span [innerHTML]="title" [ngStyle]="{'color': titleColor}" class="text-center md:text-start text-4xl lg:text-5xl xl:text-6xl font-bold"></span>
+            @if (hasSubtitle) {
+                <p #element [ngClass]="{'subtitle-text': enableLinearGradient}" class="text-center md:text-start text-2xl lg:text-3xl xl:text-4xl font-medium"
+                [ngStyle]="{'background-image': enableLinearGradient ? finalLinearGradient : 'none',
+                            'color': enableLinearGradient ? 'transparent' : subtitleColor}">
+                {{ subtitle }}
+            </p>
+            }
+            @if (hasButton) {
+                <lib-button [startColorLinearGradient]="startColorLinearGradient" [endColorLinearGradient]="endColorLinearGradient" [text]="buttonText" [link]="buttonLink" [isButtonLinkActive]="true" [item]="enableLinearGradient ? 'linear-gradient' : 'big'"></lib-button>
+            }
+        </div>
+        <div>
+            <img class="w-full min-[400px]:w-[330px] lg:w-[380px] xl:w-[430px] mb-8 md:mb-0" [src]="imgSrc">
+        </div>
+    </div>
+</div>

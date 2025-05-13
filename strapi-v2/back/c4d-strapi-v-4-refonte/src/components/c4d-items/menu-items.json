@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_c4d_items_menu_items",
+  "info": {
+    "displayName": "menuItems",
+    "icon": "filter",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

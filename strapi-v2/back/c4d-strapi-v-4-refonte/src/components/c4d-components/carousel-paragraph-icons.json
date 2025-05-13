@@ -1,0 +1,58 @@
+{
+  "collectionName": "components_c4d_components_carousel_paragraph_icons",
+  "info": {
+    "displayName": "carouselTypeParagraphIcons",
+    "icon": "expand",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "titleColor": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "hasText": {
+      "type": "boolean"
+    },
+    "text": {
+      "type": "text"
+    },
+    "textColor": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "hasButton": {
+      "type": "boolean"
+    },
+    "buttonText": {
+      "type": "string"
+    },
+    "buttonLink": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "icons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "c4d-items.icons"
+    },
+    "reverseDirection": {
+      "type": "boolean"
+    }
+  }
+}

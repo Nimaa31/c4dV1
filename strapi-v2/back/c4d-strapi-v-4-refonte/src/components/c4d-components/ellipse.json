@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_c4d_components_ellipses",
+  "info": {
+    "displayName": "ellipse",
+    "icon": "chartBubble"
+  },
+  "options": {},
+  "attributes": {
+    "color": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "enableRightPosition": {
+      "type": "boolean"
+    },
+    "xPosition": {
+      "type": "string"
+    },
+    "yPosition": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "collectionName": "components_c4d_items_contact_form_items",
+  "info": {
+    "displayName": "contactFormItems",
+    "icon": "crop",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "placeholder": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "normal",
+        "email",
+        "phone",
+        "textarea",
+        "checkbox",
+        "sectionTitle",
+        "paragraph"
+      ],
+      "default": "normal",
+      "required": true
+    },
+    "isTwoFieldsInRow": {
+      "type": "boolean",
+      "default": false
+    },
+    "alreadyUsed": {
+      "type": "boolean",
+      "default": false
+    },
+    "isChecked": {
+      "type": "boolean",
+      "default": false
+    },
+    "text": {
+      "type": "text"
+    },
+    "isFocused": {
+      "type": "boolean",
+      "default": false
+    },
+    "isRequired": {
+      "type": "boolean",
+      "default": false
+    },
+    "regexPattern": {
+      "type": "string"
+    }
+  }
+}

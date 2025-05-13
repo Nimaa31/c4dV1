@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_c4d_items_slider_items",
+  "info": {
+    "displayName": "sliderItems",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

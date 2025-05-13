@@ -1,0 +1,29 @@
+<div class="w-full my-4 px-8 md:px-14 lg:px-24 xl:px-32">
+    <div [ngClass]="isReversedDirection ? 'flex-col md:flex-row-reverse' : 'flex-col-reverse md:flex-row'" class="min-[1400px]:max-w-[1400px] left-1/2 translate-x-[-50%] relative flex space-y-6 md:space-y-0 justify-between items-center">
+        <div class="flex flex-col items-center space-y-7">
+            <img class="w-full min-[400px]:w-[330px] lg:w-[380px] xl:w-[430px] mt-7 md:mt-0" [src]="imgSrc">
+            @if (hasButton) {
+                <lib-button [text]="buttonText" [link]="buttonLink" [isButtonLinkActive]="true" item="big"></lib-button>
+            }
+        </div>
+        <div class="flex flex-col items-center md:items-start space-y-8 min-[400px]:max-w-[80%] min-[600px]:max-w-[60%] md:max-w-[45%] relative">
+            <span [innerHTML]="title" [ngStyle]="{'color': titleColor}" class="text-center md:text-start text-2xl lg:text-3xl xl:text-4xl font-bold"></span>
+            @if (hasText) {
+                <p class="text-center md:text-start text-base lg:text-lg xl:text-xl font-medium"
+                [ngStyle]="{'color': textColor}">
+                {{ text }}
+            </p>
+            }
+            <div class="w-full grid grid-cols-3">
+                @for (icon of icons; track icon) {
+                    <div class="w-full flex flex-col items-center justify-center text-center">
+                        <img #icons class="w-16 lg:w-[74px] xl:w-20 2xl:w-[86px]" [src]="icon.icon" />
+                        <p class="py-4 text-base md:text-lg" [ngStyle]="{ color: textColor }">
+                            {{ icon.text }}
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

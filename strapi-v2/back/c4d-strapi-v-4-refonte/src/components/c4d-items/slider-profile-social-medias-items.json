@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_c4d_items_slider_profile_social_medias_items",
+  "info": {
+    "displayName": "sliderProfileSocialMediasItems",
+    "icon": "filePdf"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

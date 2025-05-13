@@ -1,0 +1,22 @@
+::ng-deep .item1 {
+  color: #52B6DE !important;
+}
+
+::ng-deep .item2 {
+  color: #CE932A !important;
+}
+
+::ng-deep .item3 {
+  color: #5F6D88 !important;
+}
+
+.card-container{
+  background: linear-gradient(to right, #022b5c, #003290, #bad9ef)
+}
+@media screen and (max-width: 768px) {
+  .card-container {
+    background: linear-gradient(to bottom, #022b5c, #003290, #bad9ef)
+    }
+  }
+
+  

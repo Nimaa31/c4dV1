@@ -1,0 +1,8 @@
+.btn {
+    background-size: 200% auto;
+    transition: all 0.35s ease-in-out;
+}
+  
+.btn-1:hover {
+    background-position: right center;
+}

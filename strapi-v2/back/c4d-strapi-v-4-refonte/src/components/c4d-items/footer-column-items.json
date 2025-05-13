@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_c4d_items_footer_column_items",
+  "info": {
+    "displayName": "footerItems",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

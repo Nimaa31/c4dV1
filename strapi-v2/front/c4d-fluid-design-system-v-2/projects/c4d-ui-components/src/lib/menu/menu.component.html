@@ -1,0 +1,45 @@
+<!-- web menu -->
+<div class="hidden w-full lg:flex justify-center pt-4 fixed z-20">
+    <div [ngStyle]="{'background-color': outputBackgroundColor}" class="relative w-[87%] max-w-[1600px] h-14 xl:h-16 rounded-2xl flex items-center px-5 backdrop-blur-md space-x-6">
+        <a [href]="titleLink" class="text-lg lg:text-xl xl:text-2xl" [ngStyle]="{'color': titleColor}">{{title}}</a>
+        <div [ngStyle]="{'background-color': separationBarColor}" class="w-[1px] h-7 xl:h-8 opacity-[20%] rounded-full"></div>
+        <div class="w-full max-w-[58.5%] xl:max-w-[65%] flex justify-between pr-5">
+            @for (menuItem of menuItems; track menuItem) {
+                <a [ngStyle]="{'color': textColor}" class="text-nowrap text-base xl:text-lg" [href]="menuItem.href" target="_self">{{ menuItem.text }}</a>
+            }
+        </div>
+        <lib-button [text]="textButton" [link]="linkButton" [isButtonLinkActive]="true" class="absolute right-5" item="menu"></lib-button>
+    </div>
+</div>
+
+<!-- mobile menu -->
+<div class="flex lg:hidden w-full justify-center pt-4 fixed z-20">
+    <div [ngClass]="menuClass" [ngStyle]="{'background-color': outputBackgroundColor}" class="menu relative w-[89%] h-[50px] md:h-14 flex items-center px-5 backdrop-blur-md transition-all ease-in-out duration-200">
+        <a [href]="titleLink" class="text-lg md:text-xl" [ngStyle]="{'color': titleColor}">{{title}}</a>
+        <div class="w-[43px] h-[43px] absolute right-[18px] cursor-pointer" (click)="showMenu()">
+            <svg class="z-[1]" width="43" height="43" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="18.5" cy="18.5" r="17.75" fill="#0F1927" fill-opacity="0.5" stroke="url(#paint0_linear_226_38)" stroke-width="1.5"/>
+                <defs>
+                <linearGradient id="paint0_linear_226_38" x1="-4.84524" y1="18.5" x2="41.4048" y2="18.5" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6763FF"/>
+                <stop offset="1" stop-color="#FF9999"/>
+                </linearGradient>
+                </defs>
+            </svg>
+                
+            <svg #menu class="absolute top-[-4px] left-[-4px] z-[10] ham hamRotate ham4" fill="#fff" viewBox="0 0 100 100" width="51">
+                <path class="line top" d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20" />
+                <path class="line middle" d="m 70,50 h -40"/>
+                <path class="line bottom" d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20"/>
+            </svg>
+        </div>
+    </div>
+    <div *ngIf="isOpen" [@dropDownMenu]="isOpen" [ngStyle]="{'background-color': outputBackgroundColor, 'color': textColor}" class="absolute flex flex-col items-center justify-center backdrop-blur-md w-[89%] left-[50%] translate-x-[-50%] top-[66px] md:top-[72.1px] py-4 space-y-6 z-[1] rounded-b-2xl">
+        @for (menuItem of menuItems; track menuItem) {
+            <a [ngStyle]="{'color': textColor}" class="menu-item text-nowrap text-base md:text-lg" [href]="menuItem.href" target="_self">{{ menuItem.text }}</a>
+        }
+        <lib-button [text]="textButton" [link]="linkButton" [isButtonLinkActive]="true" class="menu-item" item="normal"></lib-button>
+    </div>
+</div>
+
+

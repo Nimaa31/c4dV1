@@ -1,0 +1,47 @@
+{
+  "collectionName": "components_c4d_components_paragraphs",
+  "info": {
+    "displayName": "paragraph",
+    "icon": "strikeThrough",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "hasTitle": {
+      "type": "boolean"
+    },
+    "title": {
+      "type": "string"
+    },
+    "titleColor": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "hasText": {
+      "type": "boolean"
+    },
+    "textColor": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "hasButton": {
+      "type": "boolean"
+    },
+    "textButton": {
+      "type": "string"
+    },
+    "linkButton": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "tintedColor": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    }
+  }
+}

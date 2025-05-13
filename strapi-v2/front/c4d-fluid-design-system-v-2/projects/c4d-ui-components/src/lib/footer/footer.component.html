@@ -1,0 +1,85 @@
+<div class="w-full p-2 flex justify-center">
+    <div class="w-full max-w-[1600px]">
+        <div [ngStyle]="{'background-color': outputBackgroundColor, 'color': textColor}" class="w-full md:h-72 rounded-2xl relative">
+            <div class="w-full flex flex-col md:block relative">
+                <div class="flex flex-col">
+                    <p class="font-bold w-full md:max-w-[93%] text-3xl lg:text-4xl relative text-center md:text-start md:left-10 top-8" [ngStyle]="{'color': titleColor}">{{title}}</p>
+                    <div class="flex flex-col mb-8 mt-14 xl:mt-12 text-base xl:text-lg md:flex-row items-center md:items-stretch md:justify-between lg:justify-around md:max-w-[55%] xl:max-w-[55%] md:ml-10 lg:ml-10 xl:ml-20 space-y-4 md:space-y-0 opacity-80">
+                        <div class="flex flex-col text-center">
+                            @for (startItem of startColumn; track startItem) {
+                                <a class="text-nowrap" [href]="startItem.href" target="_self">{{ startItem.text }}</a>
+                            }
+                        </div>
+                        <div class="flex flex-col text-center">
+                            @for (centerItem of centerColumn; track centerItem) {
+                                <a class="text-nowrap" [href]="centerItem.href" target="_self">{{ centerItem.text }}</a>
+                            }
+                        </div>
+                        <div class="flex flex-col text-center">
+                            @for (endItem of endColumn; track endItem) {
+                                <a class="text-nowrap" [href]="endItem.href" target="_self">{{ endItem.text }}</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center md:absolute mb-4 md:m-0 md:right-10 lg:right-14 xl:right-32 md:top-[50%] md:translate-y-[-25%] md:w-[30%] lg:w-[32%] xl:w-[27%] ">
+                    <form class="flex flex-col items-center" [formGroup]="newsletterForm" (ngSubmit)="onSubmitNewsletter()">
+                        <p [ngStyle]="{'color': newsletterTitleColor}" class="text-lg lg:text-xl xl:text-2xl font-bold">{{ newsletterTitle }}</p>
+                        <div class="w-[115%] md:w-[120%] lg:w-[120%] xl:w-full flex mt-5 items-center relative">
+                            <input class="w-full h-11 lg:h-12 font-[550] rounded-full bg-[#0F1927] outline-offset-0 outline-none focus:outline-2 focus:outline-white pl-3 pr-11" formControlName="email" [placeholder]="inputPlaceholder" type="email">
+                            <button #button class="w-8 h-8 absolute right-2 border-2 rounded-full transition-all ease-in-out duration-300 fill-white hover:bg-white hover:fill-[#0F1927] overflow-hidden">
+                                <svg #arrow class="w-7 h-7 pl-[2px] transition-transform ease duration-400" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512">
+                                    <path d="M18,12h0a2,2,0,0,0-.59-1.4l-4.29-4.3a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42L15,11H5a1,1,0,0,0,0,2H15l-3.29,3.29a1,1,0,0,0,1.41,1.42l4.29-4.3A2,2,0,0,0,18,12Z"/>
+                                </svg>
+                                <svg #check class="fill-white w-4 h-4 -translate-x-[30px] transition-transform ease duration-400 absolute top-[8px] right-[8px]" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 507.506 507.506" style="enable-background:new 0 0 507.506 507.506;" xml:space="preserve" width="512" height="512">
+                                    <path d="M163.865,436.934c-14.406,0.006-28.222-5.72-38.4-15.915L9.369,304.966c-12.492-12.496-12.492-32.752,0-45.248l0,0   c12.496-12.492,32.752-12.492,45.248,0l109.248,109.248L452.889,79.942c12.496-12.492,32.752-12.492,45.248,0l0,0   c12.492,12.496,12.492,32.752,0,45.248L202.265,421.019C192.087,431.214,178.271,436.94,163.865,436.934z"/>
+                                </svg>
+                                <svg #cross class="fill-white w-7 h-7 -translate-x-[60px] transition-transform ease duration-400 absolute top-[2.5px] right-[2.8px]" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512">
+                                    <path d="M18,6h0a1,1,0,0,0-1.414,0L12,10.586,7.414,6A1,1,0,0,0,6,6H6A1,1,0,0,0,6,7.414L10.586,12,6,16.586A1,1,0,0,0,6,18H6a1,1,0,0,0,1.414,0L12,13.414,16.586,18A1,1,0,0,0,18,18h0a1,1,0,0,0,0-1.414L13.414,12,18,7.414A1,1,0,0,0,18,6Z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        @if (submitted && n['email'].errors) {
+                            @if (n['email'].errors['required']) {
+                            <div class="text-red-700">Adresse email requise</div>
+                            }
+                            @if (n['email'].errors['email']) {
+                                <div class="text-red-700">Adresse email invalide</div>
+                                }
+                            @if (n['email'].errors['unique']) {
+                                <div class="text-red-700">Cet e-mail est déjà enregistré.</div>
+                            }
+                        }
+
+                    </form>
+                    <div class="flex flex-row space-x-3 mt-4">
+                        @for (socialItem of socialItems; track socialItem) {
+                            <a class="w-9 h-9 flex items-center justify-center rounded-full bg-[#0F1927] hover:bg-white hover:text-[#0F1927] transition-all ease-in-out duration-300" [href]="socialItem.href" target="_blank">
+                                <img class="w-5 h-5" [src]="socialItem.icon">
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <div class="w-[85%] sm:w-[88%] md:w-[91%] lg:w-[93%] py-5 border-t border-white border-opacity-[0.18] relative md:absolute bottom-0 flex flex-col md:flex-row items-center justify-between text-sm xl:text-base space-y-2 md:space-y-0 opacity-80">
+                    <div class="flex flex-col md:flex-row space-y-1 md:space-x-12 md:space-y-0 items-center">  
+                        @for (legalItem of legalItems; track legalItem) {
+                            <a class="text-nowrap" [href]="legalItem.href" target="_self">{{ legalItem.text }}</a>
+                        }
+                    </div>
+                    <p class="font-normal">{{ copyrightText }}</p>
+                
+                </div>
+            </div>
+        </div>
+        <div [ngStyle]="{'background': 'rgba(255, 255, 255, 0.12)', 'border-bottom-left-radius': '25px', 'border-top-left-radius': '25px', 'border-color': popupBorderColor }" class="fixed top-[150px] border-l-8 px-4 py-3 shadow-md z-10 transition-all ease-in-out duration-500 backdrop-blur-sm" [ngClass]="sendingFormPopupPosition" role="alert" >        
+            <div class="flex">
+            <div class="flex items-center max-w-[350px]">
+            <img class="mr-4 h-12">
+            <p class="font-bold" [ngStyle]="{'color': textColorPopup}">{{ textPopup }}</p>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

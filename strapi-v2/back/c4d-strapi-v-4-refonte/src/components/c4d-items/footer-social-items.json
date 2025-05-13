@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_c4d_items_footer_social_items",
+  "info": {
+    "displayName": "footerSocialItems",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

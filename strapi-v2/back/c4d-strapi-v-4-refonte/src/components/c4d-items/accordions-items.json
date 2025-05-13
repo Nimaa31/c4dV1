@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_c4d_items_accordions_items",
+  "info": {
+    "displayName": "accordionsItems",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "text",
+      "maxLength": 300
+    }
+  }
+}

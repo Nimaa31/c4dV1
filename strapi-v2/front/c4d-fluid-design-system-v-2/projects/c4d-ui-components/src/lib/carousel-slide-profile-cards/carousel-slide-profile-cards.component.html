@@ -1,0 +1,46 @@
+<div class="w-full min-[1600px]:flex justify-center my-6">
+    <div class="min-[1600px]:max-w-[1600px] relative space-y-7">
+    <p [innerHTML]="title" [ngStyle]="{'color': titleColor}" class="text-center text-lg lg:text-xl 2xl:text-2xl font-[550] px-8 md:px-16 lg:px-20 xl:px-32"></p>
+    <swiper-container centered-slides="true" slides-per-view="auto" effect="coverflow" coverflow-effect-slide-shadows="false" speed="1000" pagination="true" pagination-clickable="true" grab-cursor="true">
+        @for (slide of slides; track slide) {
+        <swiper-slide>
+            <div #slideElement [ngStyle]="{'justify-content': isCardCenter ? 'center' : slide.justifyContent}" [ngClass]="isCardCenter ? 'space-x-12 xl:space-x-16 2xl:space-x-28' : slide.slideClasses" class="flex">
+                @for (card of slide; track card) {
+                <div [ngStyle]="{'margin-top': cardMargin, 'margin-left': card.cardSpacing}" class="flex justify-center">
+                        <img #avatar [ngStyle]="{'top': '0'}" class="absolute z-20 object-cover rounded-full w-[93.40875px] h-[93.40875px] sm:w-[90.15975px] sm:h-[90.15975px] md:w-[93.40875px] md:h-[93.40875px] min-[890px]:w-[107.02925px] min-[890px]:h-[107.02925px] lg:w-[93.40875px] lg:h-[93.40875px] 2xl:w-[125.89875px] 2xl:h-[125.89875px] mt-3" [src]="card.image">
+                    <div #card [ngStyle]="{'background-color': enableTransparentCard ? outputBackgroundColor : inputBackgroundColor, 'padding-top': cardPadding}" class="text-sm min-[890px]:text-base lg:text-[15px] 2xl:text-xl font-medium w-[260px] h-[230px] sm:w-[250px] sm:h-[222px] md:w-[260px] md:h-[230px] min-[890px]:w-[300px] min-[890px]:h-[266px] lg:w-[260px] lg:h-[230px] 2xl:w-[350px] 2xl:h-[310px] rounded-2xl 2xl:rounded-3xl pb-4 px-6 flex flex-col items-center justify-between">
+                        <div #titleContainer class="flex text-nowrap">
+                            <p [ngStyle]="{'color': nameColor}" class="text-center font-semibold">{{ card.name }}&#8205;&#8205; - &#8205;&#8205;</p>
+                            <p [ngStyle]="{'color': jobColor}" class="text-center font-semibold">{{ card.job }}</p>    
+                        </div>
+                        <p [ngStyle]="{'color': descriptionColor}" class="font-normal text-center">{{ card.description }}</p>
+                        <div class="flex space-x-4">
+                            @for (socialItem of card.socialMedias; track socialItem) {
+                            <a class="cursor-pointer" [href]="socialItem.link" target="_blank">
+                                <img class="w-6 h-6 sm:w-7 sm:h-7 min-[890px]:w-8 min-[890px]:h-8 lg:w-7 lg:h-7 2xl:w-8 2xl:h-8" [src]="socialItem.icon">
+                            </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </swiper-slide>
+        }
+    </swiper-container>
+    <div class="w-full flex justify-center">
+        @if (hasButton) {
+            <lib-button [startColorLinearGradient]="startColorLinearGradient" [endColorLinearGradient]="endColorLinearGradient" [text]="buttonText" [link]="buttonLink" [isButtonLinkActive]="true" [item]="enableLinearGradient ? 'linear-gradient' : 'big'"></lib-button>
+        }
+    </div>
+    @if (screenSize >= 500 && showLinearGradient) {
+        <div class="w-40 h-full sm:w-32 lg:w-36 xl:w-40 2xl:w-44 absolute top-0 right-0 z-10" style="pointer-events: none;">
+            <div [ngStyle]="{'background-image': rightLinearGradient}" class="w-full h-full opacity-80"></div>
+        </div>
+        <div class="w-40 h-full sm:w-32 lg:w-36 xl:w-40 2xl:w-44 absolute top-0 left-0 z-10" style="pointer-events: none;">
+            <div [ngStyle]="{'background-image': leftLinearGradient}" class="w-full h-full bg-gradient-to-r from-[#0F1927] to-[transparent] opacity-80"></div>
+        </div>
+    }
+</div>
+</div>
+

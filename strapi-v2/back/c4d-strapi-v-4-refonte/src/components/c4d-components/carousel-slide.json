@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_c4d_components_carousel_slides",
+  "info": {
+    "displayName": "carouselSlide",
+    "icon": "grid",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "text"
+    },
+    "titleColor": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "cardBackgroundColor": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "enableTransparentCard": {
+      "type": "boolean"
+    },
+    "cardDescriptionColor": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "cards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "c4d-items.slider-items"
+    }
+  }
+}

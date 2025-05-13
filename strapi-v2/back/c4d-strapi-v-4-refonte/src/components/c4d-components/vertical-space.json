@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_c4d_components_vertical_spaces",
+  "info": {
+    "displayName": "verticalSpace",
+    "icon": "arrowUp",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "spacing": {
+      "type": "string"
+    }
+  }
+}

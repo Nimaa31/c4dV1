@@ -1,0 +1,61 @@
+<div class="w-full min-[1600px]:flex justify-center my-4">
+    <div class="min-[1600px]:w-[1600px] relative space-y-6">
+    <p [innerHTML]="title" [ngStyle]="{'color': titleColor}" class="text-center text-2xl lg:text-3xl xl:text-4xl font-bold"></p>
+    <swiper-container centered-slides="true" slides-per-view="auto" effect="coverflow" coverflow-effect-slide-shadows="false" speed="1000" pagination="true" pagination-clickable="true" grab-cursor="true">
+        @for (slide of slides; track slide) {
+        <swiper-slide>
+            <div #slideElement [ngStyle]="{'justify-content': isCardCenter ? 'center' : slide.justifyContent}" [ngClass]="isCardCenter ? 'space-x-12 xl:space-x-16 2xl:space-x-28' : slide.slideClasses" class="flex">
+                @for (card of slide; track card) {
+                <div #card [ngStyle]="{'margin-left': card.cardSpacing}" (click)="onClickJobOffer(card.link)" class="w-[260px] h-[230px] sm:w-[250px] sm:h-[222px] md:w-[260px] md:h-[230px] min-[890px]:w-[300px] min-[890px]:h-[266px] lg:w-[260px] lg:h-[230px] 2xl:w-[350px] 2xl:h-[310px] cursor-pointer">
+                    <div class="h-[38%] rounded-t-2xl 2xl:rounded-t-3xl p-5" [ngStyle]="{'background-color': cardOpacity ? headerCardBackgroundColor : inputBackgroundColor}">
+                        <p [innerHTML]="card.title" [ngStyle]="{'color': jobTitleColor}" class="text-center text-xl 2xl:text-2xl" ></p>
+                        @if (card.requiredEducationLevel || card.workType) {
+                        <div class="flex justify-center gap-5 mt-3">
+                            @if (card.requiredEducationLevel) {
+                            <div class="flex items-center gap-2 border border-white rounded-full px-3 py-1">
+                                    <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.5005 0C10.2347 0 9.97222 0.0574218 9.72285 0.168164L0.518943 4.32305C0.207224 4.4666 0.000505059 4.83574 0.000505059 5.25C0.000505059 5.66426 0.207224 6.0334 0.518943 6.17695L2.41879 7.03418C1.88066 8.09238 1.5755 9.34336 1.5755 10.66V11.8125C1.5755 12.9773 1.22113 14.1791 0.843786 15.1266C0.630505 15.6598 0.387693 16.1848 0.105505 16.6688C0.00050506 16.8451 -0.0290262 17.0748 0.0300363 17.284C0.0890988 17.4932 0.226911 17.649 0.397536 17.7023L2.49754 18.3586C2.63535 18.4037 2.783 18.3709 2.90441 18.2766C3.02582 18.1822 3.11113 18.0264 3.13738 17.85C3.41957 16.0945 3.27847 14.5195 3.06847 13.3916C2.96347 12.8092 2.82238 12.2145 2.6255 11.6689V10.66C2.6255 9.42129 2.96019 8.25234 3.54097 7.31719C3.96425 6.68145 4.51222 6.16875 5.15535 5.85293L10.3069 3.32227C10.576 3.19102 10.8811 3.35508 10.9861 3.69141C11.0911 4.02773 10.9599 4.40918 10.6908 4.54043L5.53926 7.07109C5.13238 7.27207 4.77472 7.57969 4.48269 7.95703L9.71957 10.3195C9.96894 10.4303 10.2314 10.4877 10.4972 10.4877C10.763 10.4877 11.0255 10.4303 11.2749 10.3195L20.4821 6.17695C20.7938 6.0375 21.0005 5.66426 21.0005 5.25C21.0005 4.83574 20.7938 4.4666 20.4821 4.32305L11.2782 0.168164C11.0288 0.0574218 10.7663 0 10.5005 0ZM4.2005 15.4219C4.2005 16.8697 7.02238 18.375 10.5005 18.375C13.9786 18.375 16.8005 16.8697 16.8005 15.4219L16.2985 9.4582L11.6325 11.5664C11.2683 11.7305 10.8844 11.8125 10.5005 11.8125C10.1166 11.8125 9.72941 11.7305 9.36847 11.5664L4.70254 9.4582L4.2005 15.4219Z" [attr.fill]="jobHighlightedColor"/>
+                                    </svg>
+                                <span class="text-white text-sm font-medium">{{ card.requiredEducationLevel }}</span>
+                            </div>
+                            }
+
+                            @if (card.workType) {
+                            <div class="flex items-center gap-2 border border-white rounded-full px-3 py-1">
+                                <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_1763_40)">
+                                <path d="M20.1113 7.293V14.25C20.11 15.2442 19.6706 16.1973 18.8895 16.9003C18.1084 17.6033 17.0493 17.9988 15.9447 18H15.1113C14.8903 18 14.6784 17.921 14.5221 17.7803C14.3658 17.6397 14.278 17.4489 14.278 17.25C14.278 17.0511 14.3658 16.8603 14.5221 16.7197C14.6784 16.579 14.8903 16.5 15.1113 16.5H15.9447C16.6077 16.5 17.2436 16.2629 17.7124 15.841C18.1813 15.419 18.4447 14.8467 18.4447 14.25V7.293C18.4447 6.92469 18.3443 6.562 18.1522 6.23678C17.9601 5.91156 17.6822 5.63376 17.343 5.42775L11.5097 1.8855C11.0975 1.6326 10.6102 1.49734 10.1113 1.49734C9.61248 1.49734 9.12519 1.6326 8.713 1.8855L2.87966 5.42775C2.54043 5.63376 2.26258 5.91156 2.0705 6.23678C1.87841 6.562 1.77797 6.92469 1.778 7.293V14.25C1.778 14.8467 2.04139 15.419 2.51023 15.841C2.97907 16.2629 3.61496 16.5 4.278 16.5H5.11133C5.33235 16.5 5.54431 16.579 5.70059 16.7197C5.85687 16.8603 5.94467 17.0511 5.94467 17.25C5.94467 17.4489 5.85687 17.6397 5.70059 17.7803C5.54431 17.921 5.33235 18 5.11133 18H4.278C3.17334 17.9988 2.1143 17.6033 1.33318 16.9003C0.552066 16.1973 0.112655 15.2442 0.111331 14.25V7.293C0.110477 6.67929 0.27723 6.07479 0.596918 5.5327C0.916606 4.99061 1.37943 4.52755 1.94466 4.18425L7.778 0.641248C8.46572 0.221213 9.27771 -0.00334167 10.1088 -0.00334167C10.94 -0.00334167 11.7519 0.221213 12.4397 0.641248L18.273 4.18425C18.8388 4.52737 19.3023 4.99028 19.6229 5.53233C19.9434 6.07437 20.1111 6.67897 20.1113 7.293ZM15.9447 11.2552C15.9468 11.9449 15.7969 12.628 15.5037 13.2652C15.2104 13.9023 14.7797 14.4807 14.2363 14.967L11.3072 17.5455C10.9865 17.8249 10.5577 17.9811 10.1113 17.9811C9.665 17.9811 9.23616 17.8249 8.9155 17.5455L5.993 14.973C5.31333 14.3632 4.81132 13.6119 4.53149 12.7857C4.25165 11.9595 4.20263 11.0839 4.38877 10.2366C4.57491 9.38929 4.99046 8.59638 5.59858 7.92818C6.20671 7.25999 6.98861 6.73715 7.87498 6.40602C8.76136 6.07489 9.72481 5.94569 10.6799 6.02989C11.6351 6.11408 12.5524 6.40906 13.3505 6.88868C14.1487 7.3683 14.803 8.01774 15.2555 8.77943C15.708 9.54111 15.9447 10.3915 15.9447 11.2552ZM14.278 11.2552C14.278 10.6386 14.109 10.0314 13.7861 9.48755C13.4631 8.94369 12.9961 8.4799 12.4264 8.13728C11.8567 7.79465 11.2019 7.58376 10.52 7.52328C9.83809 7.4628 9.15015 7.5546 8.5171 7.79054C7.88404 8.02649 7.32541 8.39931 6.89069 8.87597C6.45596 9.35263 6.15855 9.91842 6.02481 10.5232C5.89107 11.128 5.92512 11.7532 6.12394 12.3433C6.32276 12.9335 6.68023 13.4704 7.16467 13.9065L10.0813 16.473L13.0647 13.9005C13.451 13.5536 13.7572 13.1412 13.9654 12.6871C14.1737 12.2331 14.2799 11.7464 14.278 11.2552ZM12.6113 11.25C12.6113 11.695 12.4647 12.13 12.19 12.5C11.9153 12.87 11.5249 13.1584 11.068 13.3287C10.6112 13.499 10.1086 13.5436 9.62361 13.4568C9.13865 13.3699 8.6932 13.1557 8.34356 12.841C7.99393 12.5263 7.75583 12.1254 7.65937 11.689C7.56291 11.2525 7.61241 10.8001 7.80163 10.389C7.99085 9.97783 8.31128 9.62642 8.72241 9.37919C9.13353 9.13196 9.61688 9 10.1113 9C10.7744 9 11.4103 9.23705 11.8791 9.65901C12.3479 10.081 12.6113 10.6533 12.6113 11.25Z" fill="#F28705"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_1763_40">
+                                <rect width="20" height="18" fill="white" transform="translate(0.111328)"/>
+                                </clipPath>
+                                </defs>
+                                </svg>
+                                                                <span class="text-white text-sm font-medium">{{ card.workType }}</span>
+                            </div>
+                            }
+                        </div>
+                        }
+
+
+                    </div>
+                    <div class="w-full h-[62%] flex flex-col items-center justify-around rounded-b-2xl 2xl:rounded-b-3xl p-5" [ngStyle]="{'background-color': cardOpacity ? outputBackgroundColor : inputBackgroundColor}">
+                        <p [innerHTML]="card.jobDescription" [ngStyle]="{'color': jobDescriptionColor}" class="text-center text-base 2xl:text-xl font-medium"></p>
+                    </div>
+                </div>
+                }
+            </div>
+        </swiper-slide>
+        }
+    </swiper-container>
+    @if (screenSize >= 500 && showLinearGradient) {
+        <div class="w-40 h-full sm:w-32 lg:w-36 xl:w-40 2xl:w-44 absolute top-0 right-0 z-10" style="pointer-events: none;">
+            <div [ngStyle]="{'background-image': rightLinearGradient}" class="w-full h-full opacity-80"></div>
+        </div>
+        <div class="w-40 h-full sm:w-32 lg:w-36 xl:w-40 2xl:w-44 absolute top-0 left-0 z-10" style="pointer-events: none;">
+            <div [ngStyle]="{'background-image': leftLinearGradient}" class="w-full h-full bg-gradient-to-r from-[#0F1927] to-[transparent] opacity-80"></div>
+        </div>
+    }
+</div>
+</div>
