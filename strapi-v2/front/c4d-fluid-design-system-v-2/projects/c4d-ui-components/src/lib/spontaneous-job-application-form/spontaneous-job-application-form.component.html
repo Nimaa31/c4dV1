@@ -57,7 +57,7 @@
                                             }
                                         </div>
                                         @if (submitted && n[currentField.name].errors) {
-                                            <div class="text-red-700 absolute mt-[44px] sm:mt-[48px] ml-4 text-start w-full">
+                                            <div class="text-red-700 absolute mt-[44px] sm:mt-[48px] ml-4 text-start w-full error-message">
                                                 @if (n[currentField.name].errors?.['required']) {
                                                     <span>{{ currentField.placeholder ? currentField.placeholder + ' est requis(e)' : 'Ce champ est requis' }}</span>
                                                 }

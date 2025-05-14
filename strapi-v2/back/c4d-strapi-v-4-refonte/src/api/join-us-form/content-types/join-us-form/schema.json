@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "join_us_forms",
+  "info": {
+    "singularName": "join-us-form",
+    "pluralName": "join-us-forms",
+    "displayName": "JoinUsForm",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nom": {
+      "type": "string"
+    },
+    "Prenom": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "numero": {
+      "type": "string"
+    },
+    "post": {
+      "type": "string"
+    },
+    "lien": {
+      "type": "text"
+    },
+    "cv": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "message": {
+      "type": "text"
+    }
+  }
+}

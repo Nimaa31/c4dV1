@@ -279,46 +279,152 @@ export class SpontaneousJobApplicationFormComponent implements OnInit {
     };
   }
 
+  // onSubmitCandidatureForm() {
+  //   this.submitted = true;
+  //   const formData = this.candidatureForm.value;
+
+  //   const requestData = {
+  //     job_offer: "candidature_spontannée",
+  //     ...formData,
+  //   };
+
+  //   if (this.candidatureForm.valid) {
+  //     this.sendData
+  //     .sendUnsolicitedApplicationData(requestData)
+  //       .subscribe({
+  //         next: () => {
+  //           this.showSendingFormPopup();
+  //           this.submitted = false;
+  //           this.candidatureForm.reset();
+
+  //           const field = this.formFields.find((f) => f.type === "file");
+  //           if (field) {
+  //             field.selectedFileName = "";
+  //           }
+
+  //           setTimeout(() => {
+  //             this.hideSendingFormPopup();
+  //           }, 3000);
+  //         },
+  //         error: () => {
+  //           this.submitted = false;
+  //           this.textPopup =
+  //             "Echec de l'envoie du formulaire veuillez réessayer utlérieurement";
+  //           this.showSendingFormPopup();
+  //           setTimeout(() => {
+  //             this.hideSendingFormPopup();
+  //           }, 3000);
+  //         },
+  //       });
+  //   }
+  // }
+  // onSubmitCandidatureForm() {
+  //   this.submitted = true;
+  //   const formData = this.candidatureForm.value;
+  
+  //   const data = {
+  //     Nom: formData.lastName,
+  //     Prenom: formData.firstName,
+  //     email: formData.email,
+  //     numero: formData.phone,
+  //     post: formData.desiredJob,
+  //     lien: formData.profileLink,
+  //     message: formData.motivationText,
+  //   };
+  
+  //   const file = this.uploadedFiles['cv'];
+  
+  //   if (this.candidatureForm.valid) {
+  //     this.sendData.sendUnsolicitedApplicationData({ data }, file).subscribe({
+  //       next: () => {
+  //         this.showSendingFormPopup();
+  //         this.submitted = false;
+  //         this.candidatureForm.reset();
+  
+  //         const field = this.formFields.find((f) => f.type === "file");
+  //         if (field) {
+  //           field.selectedFileName = "";
+  //         }
+  
+  //         setTimeout(() => {
+  //           this.hideSendingFormPopup();
+  //         }, 3000);
+  //       },
+  //       error: () => {
+  //         this.submitted = false;
+  //         this.textPopup =
+  //           "Échec de l'envoi du formulaire. Veuillez réessayer ultérieurement.";
+  //         this.showSendingFormPopup();
+  //         setTimeout(() => {
+  //           this.hideSendingFormPopup();
+  //         }, 3000);
+  //       },
+  //     });
+  //   }
+  // }
+  
   onSubmitCandidatureForm() {
+    // 🛡️ Anti double clic
+    if (this.submitted) return;
     this.submitted = true;
+  
     const formData = this.candidatureForm.value;
-
-    const requestData = {
-      job_offer: "candidature_spontannée",
-      ...formData,
+  
+    // ✅ Données texte formatées selon les champs Strapi
+    const data = {
+      Nom: formData.lastName,
+      Prenom: formData.firstName,
+      email: formData.email,
+      numero: formData.phone,
+      post: formData.desiredJob,
+      lien: formData.profileLink,
+      message: formData.motivationText,
     };
-
+  
+    const file = this.uploadedFiles['cv'];
+  
+    // 🚨 Vérifie que le fichier est bien sélectionné
+    if (!file) {
+      this.submitted = false;
+      this.textPopup = "Veuillez ajouter un fichier CV avant d'envoyer le formulaire.";
+      this.showSendingFormPopup();
+      setTimeout(() => this.hideSendingFormPopup(), 3000);
+      return;
+    }
+  
     if (this.candidatureForm.valid) {
-      this.sendData
-      .sendUnsolicitedApplicationData(requestData)
-        .subscribe({
-          next: () => {
-            this.showSendingFormPopup();
-            this.submitted = false;
-            this.candidatureForm.reset();
-
-            const field = this.formFields.find((f) => f.type === "file");
-            if (field) {
-              field.selectedFileName = "";
-            }
-
-            setTimeout(() => {
-              this.hideSendingFormPopup();
-            }, 3000);
-          },
-          error: () => {
-            this.submitted = false;
-            this.textPopup =
-              "Echec de l'envoie du formulaire veuillez réessayer utlérieurement";
-            this.showSendingFormPopup();
-            setTimeout(() => {
-              this.hideSendingFormPopup();
-            }, 3000);
-          },
-        });
+      this.sendData.sendUnsolicitedApplicationData({ data }, file).subscribe({
+        next: (res) => {
+          console.log("✅ Formulaire envoyé avec succès :", res);
+  
+          this.textPopup = "Votre candidature a bien été envoyée.";
+          this.showSendingFormPopup();
+          this.submitted = false;
+          this.candidatureForm.reset();
+  
+          const field = this.formFields.find((f) => f.type === "file");
+          if (field) field.selectedFileName = "";
+  
+          setTimeout(() => this.hideSendingFormPopup(), 3000);
+        },
+        error: (err) => {
+          console.error("❌ Erreur d'envoi :", err);
+          this.submitted = false;
+          this.textPopup =
+            "Échec de l'envoi du formulaire. Veuillez réessayer ultérieurement.";
+          this.showSendingFormPopup();
+          setTimeout(() => this.hideSendingFormPopup(), 3000);
+        },
+      });
+    } else {
+      this.submitted = false;
+      this.textPopup = "Veuillez remplir tous les champs obligatoires.";
+      this.showSendingFormPopup();
+      setTimeout(() => this.hideSendingFormPopup(), 3000);
     }
   }
-
+  
+  
   showSendingFormPopup() {
     this.sendingFormPopupPosition = "right-0";
     setTimeout(() => {
@@ -330,16 +436,49 @@ export class SpontaneousJobApplicationFormComponent implements OnInit {
     this.sendingFormPopupPosition = "right-[-450px]";
   }
 
+  // uploadFile(event: Event, fieldName: string) {
+  //   const input = event.target as HTMLInputElement;
+  //   if (input.files && input.files.length > 0) {
+  //     const file = input.files[0];
+
+  //     const field = this.formFields.find((f) => f.name === fieldName);
+  //     if (field) {
+  //       field.selectedFileName = file.name;
+  //       this.uploadedFiles[fieldName] = file;
+
+  //       const patchFile: { [key: string]: any } = {};
+  //       patchFile[fieldName] = file.name;
+  //       this.candidatureForm.patchValue(patchFile);
+  //     }
+  //   } else {
+  //     const field = this.formFields.find((f) => f.name === fieldName);
+  //     if (field) {
+  //       field.selectedFileName = "";
+  //     }
+  //   }
+  // }
+  readonly MAX_FILE_SIZE_MB = 5; // Pour 5 Mo si besoin
+
   uploadFile(event: Event, fieldName: string) {
     const input = event.target as HTMLInputElement;
+  
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
-
+      const fileSizeMB = file.size / (1024 * 1024); // en Mo
+  
+      if (fileSizeMB > this.MAX_FILE_SIZE_MB) {
+        this.textPopup = `❌ Taille du fichier trop grande (max : ${this.MAX_FILE_SIZE_MB} Mo)`;
+        this.showSendingFormPopup();
+        setTimeout(() => this.hideSendingFormPopup(), 3000);
+        return;
+      }
+  
+      // Sinon : accepte le fichier
       const field = this.formFields.find((f) => f.name === fieldName);
       if (field) {
         field.selectedFileName = file.name;
         this.uploadedFiles[fieldName] = file;
-
+  
         const patchFile: { [key: string]: any } = {};
         patchFile[fieldName] = file.name;
         this.candidatureForm.patchValue(patchFile);
@@ -351,6 +490,7 @@ export class SpontaneousJobApplicationFormComponent implements OnInit {
       }
     }
   }
+  
 
   processText(text: string): string {
     const regex = /<tinted>(.*?)<\/tinted>|<linear>(.*?)<\/linear>|(\n)/gs;

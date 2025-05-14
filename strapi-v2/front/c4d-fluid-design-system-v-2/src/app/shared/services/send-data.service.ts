@@ -65,21 +65,49 @@ export class SendDataService {
       })
     );
   }
-sendUnsolicitedApplicationData(data: any): Observable<any> {
-  const requestData = { data: data };
-
-  return this.http.post(this.apiUrl + "/spontaneous-applications", requestData, {
-    headers: this.header,
-  }).pipe(
-    catchError((error) => {
-      console.error("Error sending unsolicited application data", error);
-      return throwError(
-        () =>
-          new Error("Échec de l'envoi de la candidature spontanée. Veuillez réessayer plus tard.")
-      );
-    })
-  );
-}
+  // sendUnsolicitedApplicationData(data: any): Observable<any> {
+  //   const requestData = { data };
+  
+  //   return this.http.post(this.apiUrl + "/join-us-forms", requestData, {
+  //     headers: this.header,
+  //   }).pipe(
+  //     catchError((error) => {
+  //       console.error("Erreur lors de l'envoi du formulaire :", error);
+  //       return throwError(
+  //         () =>
+  //           new Error("Échec de l'envoi de la candidature spontanée. Veuillez réessayer plus tard.")
+  //       );
+  //     })
+  //   );
+  // }
+  
+  sendUnsolicitedApplicationData(requestData: { data: any }, file: File): Observable<any> {
+    const formData = new FormData();
+  
+    // ✅ Clé `data` contenant l'objet JSON sérialisé
+    formData.append("data", JSON.stringify(requestData.data));
+  
+    // ✅ Clé EXACTE pour Strapi : files.<nom_du_champ_media>
+    if (file) {
+      formData.append("files.cv", file, file.name);
+    }
+  
+    // 🛠 Vérification côté console
+    formData.forEach((val, key) => {
+      console.log(`🧾 ${key}:`, val);
+    });
+  
+    return this.http.post(this.apiUrl + "/join-us-forms", formData).pipe(
+      catchError((error) => {
+        console.error("❌ Erreur d'envoi du formulaire :", error);
+        return throwError(() => new Error("Échec de l'envoi de la candidature spontanée."));
+      })
+    );
+  }
+  
+  
+  
+  
 
   sendContactData(data: any): Observable<any> {
     const requestData = { data: data };

@@ -209,67 +209,90 @@ ngOnInit(): void {
     this.adjustSlides();
   }
 
+  // adjustSlides() {
+  //   const screenWidth = this.checkScreenSize();
+
+  //   if (this.cards.length <= 2) {
+  //     this.showLinearGradient = false;
+  //   } else {
+  //     this.showLinearGradient = true;
+  //   }
+
+  //   if (screenWidth >= 1024) {
+  //     this.slides = this.chunkArray(this.cards, 3);
+  //     if (this.cards.length <= 2) {
+  //       this.isCardCenter = true;
+  //     } else {
+  //       this.isCardCenter = false;
+  //     }
+
+  //     this.slides.forEach((slide, index) => {
+  //       const cardCount = slide.length;
+
+  //       setTimeout(() => {
+  //         const cardElement = this.cardElements.toArray()[index].nativeElement;
+  //         const badgeElement =
+  //           this.badgeElements.toArray()[index].nativeElement;
+  //         const badgeWidth = badgeElement.offsetWidth + 20 + "px";
+
+  //         const slideWidth = this.slideElement.nativeElement.offsetWidth;
+  //         const totalCardWidth = cardElement.offsetWidth * 3;
+  //         this.spaceBetweenCards = (slideWidth - totalCardWidth) / 2;
+  //       }, 0);
+
+  //       if (cardCount <= 2 && !this.isCardCenter) {
+  //         this.slides[index].justifyContent = "normal";
+
+  //         setTimeout(() => {
+  //           this.slides[index].forEach((card: any, cardIndex: number) => {
+  //             if (cardIndex === 1) {
+  //               card.cardSpacing = `${this.spaceBetweenCards}px`;
+  //             }
+  //           });
+  //         }, 0);
+  //       } else {
+  //         this.slides[index].justifyContent = "space-between";
+  //       }
+  //     });
+  //   } else if (screenWidth >= 640) {
+  //     this.slides = this.chunkArray(this.cards, 2);
+  //     this.isCardCenter = false;
+
+  //     this.slides.forEach((slide, index) => {
+  //       const cardCount = slide.length;
+  //       if (cardCount <= 2) {
+  //         this.slides[index].justifyContent = "space-between";
+  //       }
+  //     });
+  //   } else {
+  //     this.slides = this.chunkArray(this.cards, 1);
+  //     this.isCardCenter = true;
+  //   }
+  // }
   adjustSlides() {
     const screenWidth = this.checkScreenSize();
-
-    if (this.cards.length <= 2) {
-      this.showLinearGradient = false;
-    } else {
-      this.showLinearGradient = true;
-    }
-
+  
+    // Afficher ou masquer les gradients selon le nombre de cards
+    this.showLinearGradient = this.cards.length > 2;
+  
+    // Définir le nombre de cards par slide selon la taille d'écran
     if (screenWidth >= 1024) {
       this.slides = this.chunkArray(this.cards, 3);
-      if (this.cards.length <= 2) {
-        this.isCardCenter = true;
-      } else {
-        this.isCardCenter = false;
-      }
-
-      this.slides.forEach((slide, index) => {
-        const cardCount = slide.length;
-
-        setTimeout(() => {
-          const cardElement = this.cardElements.toArray()[index].nativeElement;
-          const badgeElement =
-            this.badgeElements.toArray()[index].nativeElement;
-          const badgeWidth = badgeElement.offsetWidth + 20 + "px";
-
-          const slideWidth = this.slideElement.nativeElement.offsetWidth;
-          const totalCardWidth = cardElement.offsetWidth * 3;
-          this.spaceBetweenCards = (slideWidth - totalCardWidth) / 2;
-        }, 0);
-
-        if (cardCount <= 2 && !this.isCardCenter) {
-          this.slides[index].justifyContent = "normal";
-
-          setTimeout(() => {
-            this.slides[index].forEach((card: any, cardIndex: number) => {
-              if (cardIndex === 1) {
-                card.cardSpacing = `${this.spaceBetweenCards}px`;
-              }
-            });
-          }, 0);
-        } else {
-          this.slides[index].justifyContent = "space-between";
-        }
-      });
+      this.isCardCenter = this.cards.length <= 2;
     } else if (screenWidth >= 640) {
       this.slides = this.chunkArray(this.cards, 2);
-      this.isCardCenter = false;
-
-      this.slides.forEach((slide, index) => {
-        const cardCount = slide.length;
-        if (cardCount <= 2) {
-          this.slides[index].justifyContent = "space-between";
-        }
-      });
+      this.isCardCenter = this.cards.length === 1;
     } else {
       this.slides = this.chunkArray(this.cards, 1);
       this.isCardCenter = true;
     }
+  
+    // Pour chaque slide, définir la justification
+    this.slides.forEach((slide, index) => {
+      this.slides[index].justifyContent = this.isCardCenter ? "center" : "space-between";
+    });
   }
-
+  
   checkScreenSize(): number {
     return window.innerWidth;
   }

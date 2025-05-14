@@ -6,7 +6,7 @@
         <swiper-slide>
             <div #slideElement [ngStyle]="{'justify-content': isCardCenter ? 'center' : slide.justifyContent}" [ngClass]="isCardCenter ? 'space-x-12 xl:space-x-16 2xl:space-x-28' : slide.slideClasses" class="flex">
                 @for (card of slide; track card) {
-                <div #card [ngStyle]="{'margin-left': card.cardSpacing}" (click)="onClickJobOffer(card.link)" class="w-[260px] h-[230px] sm:w-[250px] sm:h-[222px] md:w-[260px] md:h-[230px] min-[890px]:w-[300px] min-[890px]:h-[266px] lg:w-[260px] lg:h-[230px] 2xl:w-[350px] 2xl:h-[310px] cursor-pointer">
+                <div #card [ngStyle]="{'margin-left': card.cardSpacing}" (click)="onClickJobOffer(card.link)" class=" ml-2 w-[85vw] sm:w-[350px] lg:w-[320px] 2xl:w-[350px]scursor-pointer">
                     <div class="h-[38%] rounded-t-2xl 2xl:rounded-t-3xl p-5" [ngStyle]="{'background-color': cardOpacity ? headerCardBackgroundColor : inputBackgroundColor}">
                         <p [innerHTML]="card.title" [ngStyle]="{'color': jobTitleColor}" class="text-center text-xl 2xl:text-2xl" ></p>
                         @if (card.requiredEducationLevel || card.workType) {

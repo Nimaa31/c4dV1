@@ -1045,6 +1045,44 @@ export interface ApiJoinUsJoinUs extends Schema.SingleType {
   };
 }
 
+export interface ApiJoinUsFormJoinUsForm extends Schema.CollectionType {
+  collectionName: 'join_us_forms';
+  info: {
+    singularName: 'join-us-form';
+    pluralName: 'join-us-forms';
+    displayName: 'JoinUsForm';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Nom: Attribute.String;
+    Prenom: Attribute.String;
+    email: Attribute.String;
+    numero: Attribute.String;
+    post: Attribute.String;
+    lien: Attribute.Text;
+    cv: Attribute.Media;
+    message: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::join-us-form.join-us-form',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::join-us-form.join-us-form',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMenuMenu extends Schema.CollectionType {
   collectionName: 'menus';
   info: {
@@ -1164,6 +1202,7 @@ declare module '@strapi/types' {
       'api::footer.footer': ApiFooterFooter;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::join-us.join-us': ApiJoinUsJoinUs;
+      'api::join-us-form.join-us-form': ApiJoinUsFormJoinUsForm;
       'api::menu.menu': ApiMenuMenu;
       'api::newsletter.newsletter': ApiNewsletterNewsletter;
       'api::page.page': ApiPagePage;
