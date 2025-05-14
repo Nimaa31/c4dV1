@@ -25,5 +25,5 @@ Le site Cloud4Dev est une application web moderne développée avec :
 
 ## 🗃️ Dump de base de données Strapi
 
-Le dernier dump à jour est : strapi1305.sql
+Le dernier dump à jour est : strapi-db-1405.sql
 
